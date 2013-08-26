@@ -1,0 +1,29 @@
+var products = [
+	{id=7,name="pen",cost=12,units=20,category=1},
+	{id=3,name="hen",cost=27,units=70,category=2},
+	{id=5,name="den",cost=32,units=10,category=1},
+	{id=9,name="ken",cost=24,units=30,category=2},
+	{id=2,name="len",cost=26,units=50,category=1},
+	{id=1,name="ten",cost=02,units=30,category=1},
+]
+
+var categories = [
+	{id : 1, categoryName : "stationary"},
+	{id : 2, categoryName : "electronics"}
+]
+
+Write the following functions
+=============================
+sum
+	- generalized to sum any attribute value of any object array
+
+sort
+	- generalized to sort based on any attribute
+min
+max
+avg
+count
+filter
+groupBy
+join
+
