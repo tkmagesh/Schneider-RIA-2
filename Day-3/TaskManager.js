@@ -35,12 +35,13 @@ var myApp = myApp || {};
 		} else {
 			this.classList.add("completed");
 		}
+		taskStorage.toggleCompletion(this.getAttribute("task-id"));
 	}
 
 	function onBtnAddTaskClick(){
 		var taskName = document.getElementById("txtTask").value;
-		var newTask = addTaskToStorage(taskName);
-		taskStorage.addTask(newTask);
+		var newTask = taskStorage.addTask(taskName);
+		addTaskToList(newTask);
 	}
 
 	function addTaskToList(task){
@@ -48,6 +49,8 @@ var myApp = myApp || {};
 		newTaskItem.innerHTML = task.name;
 		newTaskItem.addEventListener("click",onTaskItemClick);
 		newTaskItem.setAttribute("task-id",task.id);
+		if (task.isCompleted)
+			newTaskItem.classList.add("completed");
 		taskList.appendChild(newTaskItem);
 	}
 
