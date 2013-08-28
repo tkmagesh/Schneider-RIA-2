@@ -1,0 +1,14 @@
+CACHE MANIFEST
+#This is to demonstrate the offline application cache feature of HTML5
+# Ver 1.4
+
+CACHE:
+TaskStorage.js
+TaskManager.js
+TaskManager.css
+
+NETWORK:
+*
+
+FALLBACK:
+TaskManager-online.css	TaskManager-offline.css

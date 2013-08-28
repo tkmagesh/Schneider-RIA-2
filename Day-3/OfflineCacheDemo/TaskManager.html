@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" manifest="app.manifest">
+<head>
+	<meta charset="UTF-8">
+	<title>Task Manager - V1.2</title>
+	<link rel="stylesheet" href="TaskManager.css">
+	<link rel="stylesheet" href="TaskManager-online.css">
+	<script>
+		window.applicationCache.addEventListener("updateready",function(){
+			document.getElementById("divUpdate").classList.remove("invisible");
+			document.getElementById("btnRefresh").addEventListener("click",function(){
+					window.location.reload();
+			});
+			document.getElementById("btnCancel").addEventListener("click",function(){
+				document.getElementById("divUpdate").classList.add("invisible");
+			});
+		});
+	</script>
+	<script src="TaskStorage.js"></script>
+	<script src="TaskManager.js"></script>
+</head>
+<body>
+	<h1>Task Manager - V1.4</h1>
+	<span>Task :</span>
+	<input type="text" name="" id="txtTask">
+	<input type="button" value="Add Task" id="btnAddTask">
+	<input type="button" value="Remove Completed" id="btnRemoveCompleted">
+	<ul id="ulTaskList">
+		
+	</ul>
+	<div id="divMessage"></div>
+	<div id="divUpdate" class="invisible">
+		A new version of the application is available right now. Do you want to use it?
+		<input type="button" value="Yes" id="btnRefresh"><input type="button" value="No" id="btnCancel">
+
+	</div>
+</body>
+</html>

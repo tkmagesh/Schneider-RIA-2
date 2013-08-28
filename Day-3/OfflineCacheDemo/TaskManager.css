@@ -1,0 +1,12 @@
+body{
+	margin-left : 5px;
+}
+.completed {
+	color : red;
+	font-style: italic;
+	text-decoration: line-through;
+}
+
+.invisible {
+	display:none;
+}

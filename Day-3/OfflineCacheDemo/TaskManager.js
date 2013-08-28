@@ -1,8 +1,9 @@
 var myApp = myApp || {};
 
+
 (function(window){
 	var taskList;
-	var taskStorage = new myApp.TaskStorage(window.localStorage);
+	var taskStorage = new myApp.TaskStorage(window.sessionStorage);
 
 	window.addEventListener("DOMContentLoaded",initialize);
 	function initialize(){
