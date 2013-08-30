@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Salary Calculator</title>
+	<script src="jquery-1.10.2.js"></script>
+	<script src="Calculator.js"></script>
+	<script type="text/template" id="calculatorViewTemplate">
+		<div>
+		<div><span>Basic :</span><input type="text" name="" id="txtBasic"></div>
+		<div><span>Hra :</span><input type="text" name="" id="txtHra"></div>
+		<div><span>Da :</span><input type="text" name="" id="txtDa"></div>
+		<div>
+			<span>Tax :</span>
+			<input type="range" name="" id="rangeTax" min="10" max="50">
+			<span id="spanTax"></span>
+		</div>
+		<input type="button" value="Calaculate" id="btnCalculate">
+		<div id="divSalary"></div>
+		</div>
+	</script>
+	<script>
+
+	function SalaryCalculatorView(model,templateName){
+		this.$root = $($(templateName).html());
+		var that = this;
+		this.initialize = function(){
+			model.addOnChange("salary",function(){
+				that.$root.find("#divSalary").html(model.salary());
+			});
+			model.addOnChange("tax",function(){
+				that.$root.find("#rangeTax").val(model.tax());
+				that.$root.find("#spanTax").html(model.tax());
+			});
+			model.addOnChange("basic",function(){
+				that.$root.find("#txtBasic").val(model.basic());
+			});
+
+			model.addOnChange("hra",function(){
+				that.$root.find("#txtHra").val(model.hra());
+			});
+
+			model.addOnChange("da",function(){
+				that.$root.find("#txtDa").val(model.da());
+			});
+
+			this.$root.find("#txtBasic").change(function(){
+				model.basic(parseFloat(this.value));
+			});
+			this.$root.find("#txtHra").change(function(){
+				model.hra(parseFloat(this.value));
+			});
+			this.$root.find("#txtDa").change(function(){
+				model.da(parseFloat(this.value));
+			});
+			this.$root.find("#rangeTax").change(function(){
+				model.tax(parseFloat(this.value));
+			});
+			this.$root.find("#btnCalculate").click(function(){
+				model.calculate();
+				
+			});	
+		}
+	}
+	$(function(){
+		window.model = new SalaryCalculator();
+		window.view = new SalaryCalculatorView(model,"#calculatorViewTemplate");
+		window.view.initialize();
+		$(document.body).append(window.view.$root);
+		
+	});
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
