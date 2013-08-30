@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	#divContent{
+		font-size: 4em;
+	}
+	#anotherdiv{
+		display: block;
+		font-size: 2em;
+		-webkit-margin-before: 0.67em;
+		-webkit-margin-after: 0.67em;
+		-webkit-margin-start: 0px;
+		-webkit-margin-end: 0px;
+		font-weight: bold;
+	}
+	</style>
+	<script src="Modernizr.js"></script>
+	<script>
+	(function(window,document,undefined){
+		window.addEventListener("DOMContentLoaded",initialize);
+		function initialize(){
+			document.getElementById("btnFadeOut").addEventListener("click",onBtnFadeOutClick)
+		}
+		function onBtnFadeOutClick(){
+			fadeOut(document.getElementById("divContent"),400/*,function(){
+				this.style.opacity = 1;
+				this.innerHTML = "Completed";
+			}*/);
+		}
+		function fadeOut(node,duration,onCompleteCallback){
+			var
+				nodeOpacity = 1,
+				noOfIterations = 50,
+				timeOutInterval = duration/50,
+				incrementalOpacity = 1/50;
+
+			if (node.style.opacity){
+				nodeOpacity = parseFloat(node.style.opacity);
+			}
+			(function reduceOpacity(){
+				nodeOpacity -= incrementalOpacity;
+				if (nodeOpacity < 0) {
+					node.style.opacity = 0;
+					node.style.display = "none";
+					if (typeof onCompleteCallback === "function"){
+						onCompleteCallback.call(node);
+					}
+					return;
+				}
+				node.style.opacity = nodeOpacity;
+				setTimeout(reduceOpacity,timeOutInterval);
+			})();
+		}
+	}(window,document));
+
+	</script>
+</head>
+<body>
+	<input type="button" value="Fade Out" id="btnFadeOut"></input>
+	<div id="divContent">Schneider Electric</div>
+	<div id="anotherdiv">Another Div</div>
+	<h1>Heading -1</h1>
+</body>
+</html>
